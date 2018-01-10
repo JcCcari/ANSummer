@@ -1,0 +1,95 @@
+object Form1: TForm1
+  Left = 323
+  Height = 370
+  Top = 108
+  Width = 320
+  Caption = 'Form1'
+  ClientHeight = 370
+  ClientWidth = 320
+  LCLVersion = '1.6.4.0'
+  object Label1: TLabel
+    Left = 88
+    Height = 28
+    Top = 24
+    Width = 109
+    Caption = 'SUMATORIA'
+    Font.Height = -20
+    ParentColor = False
+    ParentFont = False
+  end
+  object EditN: TEdit
+    Left = 40
+    Height = 23
+    Top = 104
+    Width = 107
+    Alignment = taRightJustify
+    NumbersOnly = True
+    TabOrder = 0
+    Text = '0'
+  end
+  object BtnExecute: TButton
+    Left = 176
+    Height = 42
+    Top = 96
+    Width = 113
+    Caption = 'GO !'
+    OnClick = BtnExecuteClick
+    TabOrder = 1
+  end
+  object LblResult: TLabel
+    Left = 120
+    Height = 15
+    Top = 168
+    Width = 6
+    Caption = '0'
+    ParentColor = False
+  end
+  object lblResPar: TLabel
+    Left = 121
+    Height = 15
+    Top = 200
+    Width = 6
+    Caption = '0'
+    ParentColor = False
+  end
+  object lblResImpar: TLabel
+    Left = 120
+    Height = 15
+    Top = 233
+    Width = 6
+    Caption = '0'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 25
+    Height = 15
+    Top = 173
+    Width = 41
+    Caption = 'suma N'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 24
+    Height = 15
+    Top = 199
+    Width = 60
+    Caption = 'suma Pares'
+    ParentColor = False
+  end
+  object Label4: TLabel
+    Left = 25
+    Height = 15
+    Top = 233
+    Width = 74
+    Caption = 'suma Impares'
+    ParentColor = False
+  end
+  object lblParForm: TLabel
+    Left = 216
+    Height = 15
+    Top = 200
+    Width = 6
+    Caption = '0'
+    ParentColor = False
+  end
+end

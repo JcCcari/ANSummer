@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="10"/>
+    <BuildModes Active="Default"/>
+    <Units Count="7">
+      <Unit0>
+        <Filename Value="metodosCerrados.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="15" Y="4"/>
+        <UsageCount Value="27"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="unit1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Unit1"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="91"/>
+        <CursorPos X="52" Y="131"/>
+        <UsageCount Value="27"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="closedmethods.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ClosedMethods"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="234"/>
+        <CursorPos X="54" Y="245"/>
+        <FoldState Value=" T3i90O%"/>
+        <UsageCount Value="27"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="mresult.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="mResult"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="20" Y="17"/>
+        <UsageCount Value="27"/>
+        <Loaded Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="unit1.lfm"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="../taylor/unit1.pas"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Unit1"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="16"/>
+        <CursorPos X="33" Y="52"/>
+        <UsageCount Value="10"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="parsemath.pas"/>
+        <UnitName Value="ParseMath"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="133"/>
+        <CursorPos Y="156"/>
+        <UsageCount Value="10"/>
+      </Unit6>
+    </Units>
+    <JumpHistory Count="8" HistoryIndex="7">
+      <Position1>
+        <Filename Value="closedmethods.pas"/>
+        <Caret Line="233" Column="13" TopLine="220"/>
+      </Position1>
+      <Position2>
+        <Filename Value="closedmethods.pas"/>
+        <Caret Line="8" Column="34"/>
+      </Position2>
+      <Position3>
+        <Filename Value="closedmethods.pas"/>
+        <Caret Line="108" Column="23" TopLine="85"/>
+      </Position3>
+      <Position4>
+        <Filename Value="closedmethods.pas"/>
+        <Caret Line="158" Column="32" TopLine="140"/>
+      </Position4>
+      <Position5>
+        <Filename Value="closedmethods.pas"/>
+        <Caret Line="208" Column="25" TopLine="191"/>
+      </Position5>
+      <Position6>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="71" Column="30" TopLine="69"/>
+      </Position6>
+      <Position7>
+        <Filename Value="closedmethods.pas"/>
+        <Caret Line="219" Column="92" TopLine="212"/>
+      </Position7>
+      <Position8>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="78" Column="59" TopLine="65"/>
+      </Position8>
+    </JumpHistory>
+  </ProjectSession>
+</CONFIG>

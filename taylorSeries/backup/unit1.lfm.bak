@@ -1,0 +1,174 @@
+object Form1: TForm1
+  Left = 289
+  Height = 598
+  Top = 119
+  Width = 585
+  Caption = 'Form1'
+  ClientHeight = 598
+  ClientWidth = 585
+  LCLVersion = '1.6.4.0'
+  object StringGrid1: TStringGrid
+    Left = 0
+    Height = 379
+    Top = 152
+    Width = 585
+    Align = alBottom
+    DefaultColWidth = 110
+    RowCount = 1
+    TabOrder = 0
+    ColWidths = (
+      43
+      110
+      110
+      110
+      110
+    )
+    Cells = (
+      5
+      0
+      0
+      'n'
+      1
+      0
+      'xn'
+      2
+      0
+      'eAbs'
+      3
+      0
+      'eRel'
+      4
+      0
+      'ePor'
+    )
+  end
+  object Edit1: TEdit
+    Left = 72
+    Height = 23
+    Top = 56
+    Width = 56
+    TabOrder = 1
+  end
+  object Button1: TButton
+    Left = 448
+    Height = 50
+    Top = 56
+    Width = 104
+    Caption = 'CALCULAR'
+    OnClick = Button1Click
+    TabOrder = 2
+  end
+  object Edit2: TEdit
+    Left = 72
+    Height = 23
+    Top = 114
+    Width = 96
+    TabOrder = 3
+    Text = '0.0001'
+  end
+  object Memo1: TMemo
+    Left = 0
+    Height = 67
+    Top = 531
+    Width = 585
+    Align = alBottom
+    Lines.Strings = (
+      'Memo1'
+    )
+    TabOrder = 4
+  end
+  object Label1: TLabel
+    Left = 24
+    Height = 15
+    Top = 62
+    Width = 32
+    Caption = 'Valor :'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 24
+    Height = 15
+    Top = 116
+    Width = 42
+    Caption = 'ERROR :'
+    ParentColor = False
+  end
+  object RadioGroup1: TRadioGroup
+    Left = 144
+    Height = 65
+    Top = 32
+    Width = 114
+    AutoFill = True
+    Caption = 'Tipo'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 45
+    ClientWidth = 110
+    TabOrder = 5
+    object RBtnRadianes: TRadioButton
+      Left = 6
+      Height = 23
+      Top = 0
+      Width = 98
+      Caption = 'Radianes'
+      TabOrder = 0
+    end
+    object RBtnGrados: TRadioButton
+      Left = 6
+      Height = 22
+      Top = 23
+      Width = 98
+      Caption = 'Grados'
+      TabOrder = 1
+    end
+  end
+  object RadioGroup2: TRadioGroup
+    Left = 304
+    Height = 100
+    Top = 24
+    Width = 112
+    AutoFill = True
+    Caption = 'Operacion'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 80
+    ClientWidth = 108
+    TabOrder = 6
+    object RadioButton1: TRadioButton
+      Left = 6
+      Height = 27
+      Top = 0
+      Width = 96
+      Caption = 'sin'
+      Checked = True
+      TabOrder = 0
+      TabStop = True
+    end
+    object RadioButton2: TRadioButton
+      Left = 6
+      Height = 27
+      Top = 27
+      Width = 96
+      Caption = 'cos'
+      TabOrder = 1
+    end
+    object RadioButton5: TRadioButton
+      Left = 6
+      Height = 26
+      Top = 54
+      Width = 96
+      Caption = 'exp'
+      TabOrder = 2
+    end
+  end
+end
