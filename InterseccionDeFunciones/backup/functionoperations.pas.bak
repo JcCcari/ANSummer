@@ -1,0 +1,28 @@
+unit FunctionOperations;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, Result;
+
+type
+  TFunOperations = class
+    public
+      function intersection( f1, f2 : String; x,y : Double): TResult;
+    private
+
+  end;
+
+implementation
+
+// usar metodos cerrado puntos [ Point - 1 , Point +1]
+// usar met abierto
+function TFunOperations.intersection( f1, f2 : String; x,y : Double): TResult;
+begin
+
+end;
+
+end.
+

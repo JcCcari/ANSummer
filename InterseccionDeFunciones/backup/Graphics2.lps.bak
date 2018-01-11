@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="10"/>
     <BuildModes Active="Default"/>
-    <Units Count="3">
+    <Units Count="6">
       <Unit0>
         <Filename Value="Graphics2.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -12,7 +12,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="25"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -20,10 +20,9 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="12"/>
-        <CursorPos X="21" Y="12"/>
-        <UsageCount Value="22"/>
+        <TopLine Value="102"/>
+        <CursorPos X="26" Y="112"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -31,14 +30,36 @@
         <Filename Value="parsemath.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ParseMath"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="4"/>
-        <CursorPos X="41" Y="9"/>
-        <UsageCount Value="22"/>
+        <CursorPos X="23" Y="10"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="intersection.pas"/>
+        <UnitName Value="Unit1"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="6"/>
+        <UsageCount Value="21"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="Graphics2.lps"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="XML"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="functionoperations.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FunctionOperations"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="26" Y="3"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit5>
     </Units>
-    <JumpHistory Count="10" HistoryIndex="9">
+    <JumpHistory Count="15" HistoryIndex="14">
       <Position1>
         <Filename Value="main.pas"/>
         <Caret Line="14" Column="61"/>
@@ -77,8 +98,28 @@
       </Position9>
       <Position10>
         <Filename Value="main.pas"/>
-        <Caret Line="13" Column="21" TopLine="135"/>
+        <Caret Line="12" Column="21" TopLine="12"/>
       </Position10>
+      <Position11>
+        <Filename Value="main.pas"/>
+        <Caret Line="101" Column="3" TopLine="95"/>
+      </Position11>
+      <Position12>
+        <Filename Value="main.pas"/>
+        <Caret Line="102" Column="3" TopLine="96"/>
+      </Position12>
+      <Position13>
+        <Filename Value="main.pas"/>
+        <Caret Line="110" Column="16" TopLine="94"/>
+      </Position13>
+      <Position14>
+        <Filename Value="main.pas"/>
+        <Caret Line="103" Column="15" TopLine="90"/>
+      </Position14>
+      <Position15>
+        <Filename Value="main.pas"/>
+        <Caret Line="113" Column="56" TopLine="91"/>
+      </Position15>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>

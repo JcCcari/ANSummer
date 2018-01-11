@@ -109,7 +109,8 @@ var
         with TLineSeries(Series) do begin
           x := GetXValue(PointIndex);
           y := GetYValue(PointIndex);
-          Statusbar1.SimpleText := Format('%s: x = %f, y = %f', [Title, x, y]);
+          //Statusbar1.SimpleText := Format('%s: x = %f, y = %f', [Title, x, y]);
+          Statusbar1.SimpleText := Format('%s: x = %f, y = %f', [TEdit(EditList.Items[Tag]).Caption, x, y]);
           LblFun1.Caption:= Title;
         end
       else
@@ -189,9 +190,7 @@ begin
    with TLineSeries( FunctionList[ FunctionList.Count - 1 ] ) do begin
         Name:= FunctionSeriesName + IntToStr( FunctionList.Count );
         Tag:= EditList.Count - 1; // Edit Asossiated
-
    end;
-
 
    Chart1.AddSeries( TLineSeries( FunctionList[ FunctionList.Count - 1 ] ) );
 
