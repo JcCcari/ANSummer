@@ -145,24 +145,29 @@ var
   i: Integer;
 begin
     funOp := TFunOperations.create();
+    resY := TStringList.Create();
     function1:= LBoxIntersection.Items[LBoxIntersection.Count-2];
     function2:= LBoxIntersection.Items[LBoxIntersection.Count-1];
     //ShowMessage(function1 + '-' +function2);
     Res := funOp.intersection(function1, function2, StrToFloat( ediMin.Text), StrToFloat( ediMax.Text), StrToFloat(EdtPrecision.Text) );
-    {
+
     for i := 0 to Res.result.Count - 1 do
     begin
-        resY.Add( FloatToStr( evaluar(StrToFloat(Res.result[i]), function1 + '-' +function2 ) ));
+        resY.Add( FloatToStr( evaluar(StrToFloat(Res.result[i]), function1)) );
     end;
-    }
+
     StrGridResIntersection.RowCount:= Res.result.Count;
+    //StrGridResIntersection.Cols[0].Assign(funOp.AList);
+    //StrGridResIntersection.Cols[1].Assign(funOp.BList);
+    //StrGridResIntersection.Cols[2].Assign(funOp.BolzanoList);
     StrGridResIntersection.Cols[0].Assign(Res.result);
-    //StrGridResIntersection.Cols[1].Assign(ResY);
+    StrGridResIntersection.Cols[1].Assign(ResY);
 end;
 
 procedure TForm1.BtnClearLBoxClick(Sender: TObject);
 begin
   LBoxIntersection.Clear;
+  StrGridResIntersection.Clear;
 end;
 
 procedure TForm1.FunctionSeriesCalculate(const AX: Double; out AY: Double);
