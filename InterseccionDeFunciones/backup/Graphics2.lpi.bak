@@ -36,7 +36,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="5">
       <Unit0>
         <Filename Value="Graphics2.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -58,6 +58,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="FunctionOperations"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="result.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Result"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

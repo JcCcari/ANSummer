@@ -9,7 +9,7 @@ uses
 
 type
   TResult = record
-    result : TList;
+    result : TStringList;
     isResult : Boolean;
   end;
 

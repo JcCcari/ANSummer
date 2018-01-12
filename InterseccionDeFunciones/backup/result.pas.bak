@@ -10,6 +10,7 @@ uses
 type
   TResult = record
     result : TList;
+    isResult : Boolean;
   end;
 
 implementation
