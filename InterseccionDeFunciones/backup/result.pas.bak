@@ -9,8 +9,8 @@ uses
 
 type
   TResult = record
-    result : TList;
-    isResult : Boolean;
+    result : TStringList;
+    ThereIsResult : Boolean;
   end;
 
 implementation

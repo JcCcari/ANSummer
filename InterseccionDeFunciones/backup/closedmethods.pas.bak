@@ -134,13 +134,11 @@ begin
             begin
                 if( fb=0) then begin
                     Result.result := FloatToStr(b);//+' es la solucion 2'
-                    Exit;
+                    exit;
                 end
                 else
-                    if (fxn=0) then begin
+                    if (fxn=0) then
                     Result.result := FloatToStr(xn);// +' es la solucion 3' ;
-                    Exit;
-                    end;
             end;
         end
         else // bisection method

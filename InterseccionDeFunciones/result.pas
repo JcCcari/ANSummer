@@ -10,7 +10,7 @@ uses
 type
   TResult = record
     result : TStringList;
-    isResult : Boolean;
+    thereIsResult : Boolean;
   end;
 
 implementation

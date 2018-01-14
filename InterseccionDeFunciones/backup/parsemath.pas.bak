@@ -89,7 +89,7 @@ begin
    else
      Result.resFloat := NaN;
 end;
-{
+
 Procedure ExprNewton( var Result: TFPExpressionResult; Const Args: TExprParameterArray);
 var
   x: Double;
@@ -107,7 +107,7 @@ begin
    TheNewton.Destroy;
 
 end;
-}
+
 Procedure ExprSin( var Result: TFPExpressionResult; Const Args: TExprParameterArray);
 var
   x: Double;

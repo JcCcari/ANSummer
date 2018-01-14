@@ -111,7 +111,7 @@ begin
   h := e/2;
   xn_1:= x;
   i:=1;
-
+  //fun.NewValue('x',xn_1); xn := fun.Evaluate();
   SetLength(resMatrix,i,3);
   resMatrix[0,0]:= IntToStr(i-1);
   resMatrix[0,1]:= FloatToStr(xn_1);
@@ -120,7 +120,9 @@ begin
   while (e < eAbs) do
   begin
     i := i+1;
-
+    //fun.NewValue('x',xn_1); fxn := fun.Evaluate();
+    //fun.NewValue('x',xn_1+h); fxph := fun.Evaluate();
+    //fun.NewValue('x',xn_1-h); fxmh := fun.Evaluate();
     fxn := evaluar(xn_1,funExpression);
     fxph := evaluar(xn_1+h,funExpression);
     fxmh := evaluar(xn_1-h,funExpression);
@@ -130,6 +132,9 @@ begin
     if (derivada=0) then
     begin // verificamos que la tangente sea != 0
       xn_1 := xn_1 - e ; // si lo es -> perturbamos xn_1 con el error
+      //fun.NewValue('x',xn_1); fxn := fun.Evaluate();
+      //fun.NewValue('x',xn_1+h); fxph := fun.Evaluate();
+      //fun.NewValue('x',xn_1-h); fxmh := fun.Evaluate();
       fxn := evaluar(xn_1,funExpression);
       fxph := evaluar(xn_1+h,funExpression);
       fxmh := evaluar(xn_1-h,funExpression);

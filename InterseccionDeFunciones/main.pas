@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, FileUtil, TAGraph, Forms, Controls, Graphics, Dialogs,
   StdCtrls, LCLType, ExtCtrls, ColorBox, ComCtrls, EditBtn, Grids, ParseMath,
   TASeries, TAFuncSeries, TARadialSeries, TATools, Types, Result,
-  FunctionOperations;
+  FunctionOperations, math;
 
 type
 
@@ -18,6 +18,7 @@ type
     BtnIntersection: TButton;
     BtnClearLBox: TButton;
     Chart1: TChart;
+    intersectionPoints: TLineSeries;
     ChartToolset1: TChartToolset;
     ChartToolset1DataPointClickTool1: TDataPointClickTool;
     ChartToolset1ZoomMouseWheelTool1: TZoomMouseWheelTool;
@@ -52,8 +53,7 @@ type
     procedure trbarVisibleChange(Sender: TObject);
   private
     FunctionList,
-    EditList,
-    LabelList: TList;
+    EditList: TList;
     ActiveFunction: Integer;
     min,
     max: Real;
@@ -62,7 +62,10 @@ type
     function evaluar( x: Real; fun: String ): Real;
     procedure CreateNewFunction;
     procedure Graphic2D;
+    procedure DrawPoint(x,y: Double);
+    procedure DrawPointList(xPoints,yPoints: TStringList );
 
+    function getYValuesFromXValues( Xvalues: TStringList; fun: String): TStringList;
   public
 
   end;
@@ -84,9 +87,6 @@ begin
   max:= 5.0;
   Parse:= TParseMath.create();
   Parse.AddVariable('x', min);
-
-  //LBoxIntersection.AddItem('Function 1',Nil);
-  //LBoxIntersection.AddItem('Function 2',Nil);
 end;
 
 procedure TForm1.trbarVisibleChange(Sender: TObject);
@@ -96,7 +96,6 @@ end;
 
 function TForm1.f( x: Real ): Real;
 begin
-  //func:= TEdit( EditList[ ActiveFunction ] ).Text;
   Parse.Expression:= TEdit( EditList[ ActiveFunction ] ).Text;
   Parse.NewValue('x', x);
   Result:= Parse.Evaluate();
@@ -104,7 +103,6 @@ end;
 
 function TForm1.evaluar( x: Real; fun: String ): Real;
 begin
-  //func:= TEdit( EditList[ ActiveFunction ] ).Text;
   Parse.Expression:= fun;
   Parse.NewValue('x', x);
   Result:= Parse.Evaluate();
@@ -122,18 +120,41 @@ procedure TForm1.ChartToolset1DataPointClickTool1PointClick(ATool: TChartTool;
 var
   x,y: Double;
 begin
-  //LabelList.Add( TLabel(LBoxIntersection) );
     with ATool as TDatapointClickTool do
       if (Series is TLineSeries) then
         with TLineSeries(Series) do begin
           x := GetXValue(PointIndex);
           y := GetYValue(PointIndex);
-          //Statusbar1.SimpleText := Format('%s: x = %f, y = %f', [Title, x, y]);
+
           LBoxIntersection.AddItem(TEdit(EditList.Items[Tag]).Caption, TEdit(EditList.Items[Tag]));
-          Statusbar1.SimpleText := Format('%s: x = %f, y = %f', [TEdit(EditList.Items[Tag]).Caption, x, y]);
+          Statusbar1.SimpleText := Format(' %s : x = %f, y = %f', [TEdit(EditList.Items[Tag]).Caption, x, y]);
         end
       else
         Statusbar1.SimpleText := 'aaa';
+end;
+
+procedure TForm1.DrawPoint(x,y: Double);
+begin
+    intersectionPoints.AddXY(x,y);
+end;
+
+procedure TForm1.DrawPointList(xPoints,yPoints: TStringList );
+var i : Integer;
+begin
+    for i:=0 to xPoints.Count-1 do begin
+        DrawPoint( StrToFloat( xPoints[i] ), StrToFloat( yPoints[i] ));
+        DrawPoint(NaN,NaN);
+    end;
+end;
+
+function TForm1.getYValuesFromXValues( Xvalues: TStringList; fun: String): TStringList;
+var i:Integer;
+begin
+    Result := TStringList.Create;
+    for i := 0 to Xvalues.Count - 1 do
+    begin
+        Result.Add( FloatToStr( evaluar(StrToFloat(Xvalues[i]), fun)) );
+    end;
 end;
 
 procedure TForm1.BtnIntersectionClick(Sender: TObject);
@@ -144,30 +165,37 @@ var
   ResY : TStringList;
   i: Integer;
 begin
+    if (LBoxIntersection.Count < 2) then
+       Exit;
+
     funOp := TFunOperations.create();
     resY := TStringList.Create();
     function1:= LBoxIntersection.Items[LBoxIntersection.Count-2];
     function2:= LBoxIntersection.Items[LBoxIntersection.Count-1];
-    //ShowMessage(function1 + '-' +function2);
+
     Res := funOp.intersection(function1, function2, StrToFloat( ediMin.Text), StrToFloat( ediMax.Text), StrToFloat(EdtPrecision.Text) );
 
-    for i := 0 to Res.result.Count - 1 do
-    begin
-        resY.Add( FloatToStr( evaluar(StrToFloat(Res.result[i]), function1)) );
+    if( Res.thereIsResult = False) then begin
+        ShowMessage('No hay Interseccion en el intervalo ['+ediMin.Text + ','+ediMin.Text+']');
+        Exit;
     end;
 
+    ResY := getYValuesFromXValues(Res.result,function1);
+
     StrGridResIntersection.RowCount:= Res.result.Count;
-    //StrGridResIntersection.Cols[0].Assign(funOp.AList);
-    //StrGridResIntersection.Cols[1].Assign(funOp.BList);
-    //StrGridResIntersection.Cols[2].Assign(funOp.BolzanoList);
+
     StrGridResIntersection.Cols[0].Assign(Res.result);
     StrGridResIntersection.Cols[1].Assign(ResY);
+
+    DrawPointList(Res.result, ResY);
 end;
 
 procedure TForm1.BtnClearLBoxClick(Sender: TObject);
 begin
   LBoxIntersection.Clear;
   StrGridResIntersection.Clear;
+  intersectionPoints.Clear;
+  Chart1.ClearSeries;
 end;
 
 procedure TForm1.FunctionSeriesCalculate(const AX: Double; out AY: Double);
