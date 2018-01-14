@@ -1,6 +1,6 @@
 This program find the intersection points of two functions.
 
-1) Select two functions.
+1) Select two functions by clicking on them (Sometimes you have to try several times, be patient).
 2) Click 'Get Intersection' Button.
 3) Wait the program find the intersections.
 

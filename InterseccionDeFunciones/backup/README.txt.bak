@@ -5,6 +5,8 @@ This program find the intersection points of two functions.
 3) Wait the program find the intersections.
 
 Testing:
+This cases are especials, normal cases are fine.
+
 1) Case: There are no Intersections.
   f(x) = ln(x)
   g(x) = exp(x)
