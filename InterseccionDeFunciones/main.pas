@@ -17,7 +17,10 @@ type
   TForm1 = class(TForm)
     BtnIntersection: TButton;
     BtnClearLBox: TButton;
+    BtnClearFunctions: TButton;
     Chart1: TChart;
+    ChartToolset1ZoomClickTool1: TZoomClickTool;
+    ChartToolset1ZoomDragTool1: TZoomDragTool;
     intersectionPoints: TLineSeries;
     ChartToolset1: TChartToolset;
     ChartToolset1DataPointClickTool1: TDataPointClickTool;
@@ -41,6 +44,7 @@ type
     TrackBar1: TTrackBar;
     trbarVisible: TTrackBar;
 
+    procedure BtnClearFunctionsClick(Sender: TObject);
     procedure BtnClearLBoxClick(Sender: TObject);
     procedure BtnIntersectionClick(Sender: TObject);
     procedure ChartToolset1DataPointClickTool1PointClick(ATool: TChartTool;
@@ -130,7 +134,7 @@ begin
           Statusbar1.SimpleText := Format(' %s : x = %f, y = %f', [TEdit(EditList.Items[Tag]).Caption, x, y]);
         end
       else
-        Statusbar1.SimpleText := 'aaa';
+        Statusbar1.SimpleText := 'Unknown Function';
 end;
 
 procedure TForm1.DrawPoint(x,y: Double);
@@ -153,7 +157,8 @@ begin
     Result := TStringList.Create;
     for i := 0 to Xvalues.Count - 1 do
     begin
-        Result.Add( FloatToStr( evaluar(StrToFloat(Xvalues[i]), fun)) );
+        //if( Xvalues[i] <> 'No') then
+         Result.Add( FloatToStr( evaluar(StrToFloat(Xvalues[i]), fun)) );
     end;
 end;
 
@@ -183,7 +188,10 @@ begin
     ResY := getYValuesFromXValues(Res.result,function1);
 
     StrGridResIntersection.RowCount:= Res.result.Count;
-
+    //StrGridResIntersection.Cols[0].Assign(funOp.AList);
+    //StrGridResIntersection.Cols[1].Assign(funOp.BList);
+    //StrGridResIntersection.Cols[2].Assign(funOp.BolzanoList);
+    //StrGridResIntersection.Cols[3].Assign(funOp.BolzanoResList);
     StrGridResIntersection.Cols[0].Assign(Res.result);
     StrGridResIntersection.Cols[1].Assign(ResY);
 
@@ -195,7 +203,20 @@ begin
   LBoxIntersection.Clear;
   StrGridResIntersection.Clear;
   intersectionPoints.Clear;
-  Chart1.ClearSeries;
+  //Chart1.ClearSeries;
+end;
+
+procedure TForm1.BtnClearFunctionsClick(Sender: TObject);
+var
+  pars: TParseMath;
+begin
+  // limpiar de FunctionList
+  pars := TParseMath.create();
+  pars.Expression:= 'x+1';
+  pars.AddVariable('x',Infinity);
+  ShowMessage( FloatToStr( pars.Evaluate() ) );
+  pars.destroy;
+  //Chart1.ClearSeries;
 end;
 
 procedure TForm1.FunctionSeriesCalculate(const AX: Double; out AY: Double);

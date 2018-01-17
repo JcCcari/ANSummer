@@ -5,16 +5,17 @@ unit FunctionOperations;
 interface
 
 uses
-  Classes, SysUtils, Result, mOpenMethod, ClosedMethods, ParseMath;
+  Classes, SysUtils, Result, mOpenMethod, ClosedMethods, ParseMath,math;
 
 type
   TFunOperations = class
     const
-     INTERVAL = 0.1;
+     INTERVAL = 0.01;
     public
       AList,
       BList,
-      BolzanoList: TStringList;
+      BolzanoList,
+      BolzanoResList: TStringList;
       constructor create();
       //function intersection( f1, f2 : String; xmin, xmax, e: Double): TStringList;
       function intersection( f1, f2 : String; xmin, xmax, e: Double): TResult;
@@ -35,6 +36,7 @@ begin
   AList := TStringList.Create();
   BList := TStringList.Create();
   BolzanoList := TStringList.Create();
+  BolzanoResList := TStringList.Create();
 end;
 
 function TFunOperations.bolzano( x1,x2: Double; fun: String): Integer;
@@ -44,14 +46,27 @@ begin
   fx1 := evaluar(x1,fun);
   fx2 := evaluar(x2,fun);
 
-  if( fx1 = 0) then // x1 is the solution
-      Result := 1
+  {if( evaluar(999999999999,fun) < 0.0000000001 ) then begin
+    Result := -1;
+    Exit;
+  end;}
+  BolzanoResList.Add( FloatToStr(abs(fx1)) );
+  if( abs(fx1) < 0.0000001 ) then begin
+      //BolzanoResList.Add( FloatToStr(abs(fx1)) );
+      Result := 1;   // x1 is the solution
+      Exit;
+  end
   else begin
-    if( fx2 = 0) then // x2 is the solution
-      Result := 2
+    if( abs(fx2) < 0.000001) then begin
+      //BolzanoResList.Add( FloatToStr(abs(fx2)) );
+      Result := 2;  // x2 is the solution
+      Exit;
+    end
     else begin
-      if ( (fx1*fx2) < 0 ) then // success bolzano test
-        Result := 3
+      //BolzanoResList.Add( FloatToStr(abs(fx1*fx2)) );
+      if ( (fx1*fx2) < 0 ) then begin
+        Result := 3 // success bolzano test
+      end
       else  // don´t success bolzano test
         Result := 0
     end;
@@ -83,6 +98,7 @@ var
   thereSolution : Integer;
   resultTemp: String;
   leastOneSolution:Boolean;
+  resTemp: Double;
 begin
   leastOneSolution:=False;
   Result.result := TStringList.Create;
@@ -92,6 +108,8 @@ begin
   xa:= xmin;
   while( xa <= xmax )do begin
     xb := xa + INTERVAL ;
+    //xa := StrToFloat(FormatFloat('0.00',xa));
+    //xb := StrToFloat(FormatFloat('0.00',xb));
     try
       thereSolution:= bolzano(xa,xb,funExpression);
     except
@@ -103,9 +121,14 @@ begin
     BolzanoList.Add( IntToStr(thereSolution));
 
     case thereSolution of
-     0:
+     -1:
+        BolzanoList.Add('RAprox');
+       //Result.result.Add( 'RAprox' );
+     0: begin
        leastOneSolution:= (leastOneSolution or False);
-       //Result.result.Add( 'No bolzano' );
+       //Result.result.Add( 'No' );
+       //Result.result.Add( 'No bolzano' )
+     end;
      1: begin
        leastOneSolution:= (leastOneSolution or True);
        Result.result.Add( FloatToStr(xa) );
@@ -125,7 +148,7 @@ begin
     end;
     xa := xb;
   end;
-  Result.thereIsResult:= leastOneSolution;
+  Result.thereIsResult := leastOneSolution;
   Result.result := clearPointsOutOfRange(Result.result, xmin, xmax);
 end;
 

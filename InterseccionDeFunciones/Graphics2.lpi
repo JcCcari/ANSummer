@@ -36,7 +36,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="5">
+    <Units Count="7">
       <Unit0>
         <Filename Value="Graphics2.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -63,6 +63,14 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Result"/>
       </Unit4>
+      <Unit5>
+        <Filename Value="README.txt"/>
+        <IsPartOfProject Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="README.txt"/>
+        <IsPartOfProject Value="True"/>
+      </Unit6>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

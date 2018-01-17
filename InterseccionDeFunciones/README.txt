@@ -26,4 +26,20 @@ This cases are especials, normal cases are fine.
   NOTE: For some reason, this example generates points out of range initial ( Min, Max in Form1 )
         but this bug is fixed.
 
-4) In Continuous Testing (Men working) ...
+4) Second Especial Case
+   f(x) = sin(x)
+   g(x) = cos(2*x)
+
+   NOTE: This case is solved by aproximation.
+
+5) Thirth Especial Case
+   f(x) = 1
+   g(x) = sin(x)
+
+   NOTE: This case is solved by aproximation.
+
+6) Fourth Especial Case
+   f(x) = 1-x
+   g(x) = (sin(x)/power(x,2))+ln(x)-x
+
+   NOTE: This case is solved by aproximation.

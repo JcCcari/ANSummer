@@ -126,7 +126,7 @@ begin
     fxmh := evaluar(xn_1-h,funExpression);
 
     derivada := (fxph-fxmh)/2*h;
-
+    {
     if (derivada=0) then
     begin // verificamos que la tangente sea != 0
       xn_1 := xn_1 - e ; // si lo es -> perturbamos xn_1 con el error
@@ -134,7 +134,7 @@ begin
       fxph := evaluar(xn_1+h,funExpression);
       fxmh := evaluar(xn_1-h,funExpression);
     end;
-
+    }
     xn :=  xn_1 -( (2*h*fxn)/(fxph-fxmh) );
 
     eAbs:= abs(xn- xn_1);
