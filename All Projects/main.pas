@@ -6,8 +6,9 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, TAGraph, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, LCLType, ExtCtrls, ColorBox, ComCtrls, EditBtn, Grids, ParseMath,
+  TAChartUtils, StdCtrls, LCLType, ExtCtrls, ColorBox, ComCtrls, EditBtn, Grids,
   TASeries, TAFuncSeries, TARadialSeries, TATools, Types,
+  ParseMath,
   Result,
   FunctionOperations,
   math,
@@ -27,8 +28,15 @@ type
     BtnClearFunctions: TButton;
     BtnClosedExecute: TButton;
     BtnInterpolationExecute: TButton;
+    BtnInterpolationEvaluate: TButton;
     Chart1: TChart;
     Chart2: TChart;
+    CBoxInterpolationShowPoints: TCheckBox;
+    CBoxInterpolationShowValuePoints: TCheckBox;
+    CheckGroup1: TCheckGroup;
+    InterpolationPoints: TLineSeries;
+    EdtInterpolationRes: TEdit;
+    InterpolationSerie: TLineSeries;
     ChartToolset1ZoomClickTool1: TZoomClickTool;
     ChartToolset1ZoomDragTool1: TZoomDragTool;
     EdtInterpolationXYpoints: TEdit;
@@ -51,6 +59,7 @@ type
     EdtPrecision: TEdit;
     Label1: TLabel;
     Label10: TLabel;
+    Label11: TLabel;
     Label12: TLabel;
     Label13: TLabel;
     Label2: TLabel;
@@ -60,6 +69,7 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    EdtInterpolationEvaluate: TLabeledEdit;
     LblInterseccionTitle: TLabel;
     Label5: TLabel;
     LblPrecision: TLabel;
@@ -72,7 +82,9 @@ type
     Panel2: TPanel;
     PanelClosedHeader: TPanel;
     PanelClosedHeader1: TPanel;
+    RBtnLagrange: TRadioButton;
     RadioGroup2: TRadioGroup;
+    RadioGroup3: TRadioGroup;
     RBtnBisection: TRadioButton;
     RBtnNewton: TRadioButton;
     RBtnFakePosition: TRadioButton;
@@ -93,6 +105,7 @@ type
     procedure BtnClearFunctionsClick(Sender: TObject);
     procedure BtnClearLBoxClick(Sender: TObject);
     procedure BtnClosedExecuteClick(Sender: TObject);
+    procedure BtnInterpolationEvaluateClick(Sender: TObject);
     procedure BtnInterpolationExecuteClick(Sender: TObject);
     procedure BtnIntersectionClick(Sender: TObject);
     procedure BtnOpenExecuteClick(Sender: TObject);
@@ -115,8 +128,9 @@ type
     function evaluar( x: Real; fun: String ): Real;
     procedure CreateNewFunction;
     procedure Graphic2D;
-    procedure DrawPoint(x,y: Double);
-    procedure DrawPointList(xPoints,yPoints: TStringList );
+    procedure DrawPoint(x,y: Double; functSerie: TLineSeries);
+    procedure DrawPointList(xPoints,yPoints: TStringList; functSerie: TLineSeries );
+    procedure DrawLineSerie( functSerie: TLineSeries; funExpression:String ;xmin,xmax: Double);
 
     function getYValuesFromXValues( Xvalues: TStringList; fun: String): TStringList;
 
@@ -193,17 +207,17 @@ begin
         Statusbar1.SimpleText := 'Unknown Function';
 end;
 
-procedure TForm1.DrawPoint(x,y: Double);
+procedure TForm1.DrawPoint(x,y: Double; functSerie: TLineSeries);
 begin
-    intersectionPoints.AddXY(x,y);
+    functSerie.AddXY(x,y);
 end;
 
-procedure TForm1.DrawPointList(xPoints,yPoints: TStringList );
+procedure TForm1.DrawPointList(xPoints,yPoints: TStringList; functSerie: TLineSeries );
 var i : Integer;
 begin
     for i:=0 to xPoints.Count-1 do begin
-        DrawPoint( StrToFloat( xPoints[i] ), StrToFloat( yPoints[i] ));
-        DrawPoint(NaN,NaN);
+        DrawPoint( StrToFloat( xPoints[i] ), StrToFloat( yPoints[i] ), functSerie);
+        DrawPoint(NaN,NaN,functSerie);
     end;
 end;
 
@@ -251,7 +265,7 @@ begin
     StrGridResIntersection.Cols[0].Assign(Res.result);
     StrGridResIntersection.Cols[1].Assign(ResY);
 
-    DrawPointList(Res.result, ResY);
+    DrawPointList(Res.result, ResY,intersectionPoints);
 end;
 
 procedure TForm1.BtnClosedExecuteClick(Sender: TObject);
@@ -337,9 +351,40 @@ begin
          i := i + 2;
     end;
 
-    polinomy:= interpolation.lagrange(XPoints,YPoints);
+    if ( RBtnLagrange.Checked ) then
+      polinomy:= interpolation.lagrange(XPoints,YPoints)
+    else begin
+         ShowMessage('Elija un metodo');
+         Exit;
+    end;
 
     MemoInterpolationRes.Lines.Add( polinomy );
+    EdtInterpolationRes.Text:= polinomy;
+    DrawLineSerie(InterpolationSerie,polinomy,1,5);
+
+    if (CBoxInterpolationShowValuePoints.Checked) then
+      InterpolationPoints.Marks.Style:= smsValue;
+    if ( CBoxInterpolationShowPoints.Checked ) then
+      InterpolationPoints.ShowPoints:=True;
+
+    DrawPointList(XPoints,YPoints,InterpolationPoints);
+
+end;
+
+procedure TForm1.BtnInterpolationEvaluateClick(Sender: TObject);
+var
+  x,y: Double;
+begin
+    x := StrToFloat(EdtInterpolationEvaluate.Text);
+    y := evaluar(x,EdtInterpolationRes.Text);
+
+    DrawPoint(x,y,InterpolationPoints);
+    DrawPoint(NaN,NaN,InterpolationPoints);
+
+    if (CBoxInterpolationShowValuePoints.Checked) then
+      InterpolationPoints.Marks.Style:= smsValue;
+    if ( CBoxInterpolationShowPoints.Checked ) then
+      InterpolationPoints.ShowPoints:=True;
 
 end;
 
@@ -392,7 +437,6 @@ end;
 
 procedure TForm1.Graphic2D;
 var x, h: Real;
-
 begin
   h:= StrToFloat( ediStep.Text );
   min:= StrToFloat( ediMin.Text );
@@ -412,6 +456,20 @@ begin
       x:= x + h
   until ( x>= max );
 
+end;
+
+procedure TForm1.DrawLineSerie( functSerie: TLineSeries; funExpression:String ;xmin,xmax: Double);
+var x: Double;
+const h = 0.001;
+begin
+  x:= xmin;
+  functSerie.Clear;
+
+  with TLineSeries(functSerie) do
+  repeat
+      AddXY( x, evaluar(x,funExpression) );
+      x:= x + h
+  until ( x>= xmax );
 
 end;
 
