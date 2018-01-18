@@ -1,0 +1,167 @@
+unit FunctionOperations;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, Result, mOpenMethod, ClosedMethods, ParseMath,math;
+
+type
+  TFunOperations = class
+    const
+     INTERVAL = 0.01;
+    public
+      AList,
+      BList,
+      BolzanoList,
+      BolzanoResList: TStringList;
+      constructor create();
+      //function intersection( f1, f2 : String; xmin, xmax, e: Double): TStringList;
+      function intersection( f1, f2 : String; xmin, xmax, e: Double): TResult;
+    private
+      open: TOpenMethod;
+      closed : TClosedMethods;
+      function bolzano( x1,x2: Double; fun: String): Integer;
+      function evaluar(valorX : Real ; f_x : String ) : Real;
+      function clearPointsOutOfRange(XResults:TStringList; xmin, xmax: Double): TStringList;
+  end;
+
+implementation
+
+constructor TFunOperations.create();
+begin
+  open := TOpenMethod.Create();
+  closed := TClosedMethods.create();
+  AList := TStringList.Create();
+  BList := TStringList.Create();
+  BolzanoList := TStringList.Create();
+  BolzanoResList := TStringList.Create();
+end;
+
+function TFunOperations.bolzano( x1,x2: Double; fun: String): Integer;
+var
+  fx1, fx2: Double;
+begin
+  fx1 := evaluar(x1,fun);
+  fx2 := evaluar(x2,fun);
+
+  {if( evaluar(999999999999,fun) < 0.0000000001 ) then begin
+    Result := -1;
+    Exit;
+  end;}
+  BolzanoResList.Add( FloatToStr(abs(fx1)) );
+  if( abs(fx1) < 0.0000001 ) then begin
+      //BolzanoResList.Add( FloatToStr(abs(fx1)) );
+      Result := 1;   // x1 is the solution
+      Exit;
+  end
+  else begin
+    if( abs(fx2) < 0.000001) then begin
+      //BolzanoResList.Add( FloatToStr(abs(fx2)) );
+      Result := 2;  // x2 is the solution
+      Exit;
+    end
+    else begin
+      //BolzanoResList.Add( FloatToStr(abs(fx1*fx2)) );
+      if ( (fx1*fx2) < 0 ) then begin
+        Result := 3 // success bolzano test
+      end
+      else  // don´t success bolzano test
+        Result := 0
+    end;
+  end;
+end;
+
+function TFunOperations.evaluar(valorX : Real ; f_x : String ) : Real;
+var
+   MiParse : TParseMath;
+begin
+  try
+   Miparse := TParseMath.create();
+   MiParse.AddVariable('x',valorX);
+   MiParse.Expression:= f_x;
+   evaluar := MiParse.Evaluate();
+  except
+     evaluar:=0.0001;
+     Exit;
+  end;
+end;
+
+// use closed method - parameter [ Point - 1 , Point +1]
+// use open method - parameter [Result closed method]
+
+function TFunOperations.intersection( f1, f2 : String; xmin, xmax, e: Double): TResult;
+var
+  funExpression: String;
+  xa, xb: Double;
+  thereSolution : Integer;
+  resultTemp: String;
+  leastOneSolution:Boolean;
+  resTemp: Double;
+begin
+  leastOneSolution:=False;
+  Result.result := TStringList.Create;
+  //Result.result.Sorted := True;
+  Result.result.Duplicates := dupIgnore;
+  funExpression := f1 + '-(' + f2 + ')';
+  xa:= xmin;
+  while( xa <= xmax )do begin
+    xb := xa + INTERVAL ;
+    //xa := StrToFloat(FormatFloat('0.00',xa));
+    //xb := StrToFloat(FormatFloat('0.00',xb));
+    try
+      thereSolution:= bolzano(xa,xb,funExpression);
+    except
+       thereSolution:=0;
+    end;
+
+    AList.Add( FloatToStr( xa ));
+    BList.Add( FloatToStr( xb ));
+    BolzanoList.Add( IntToStr(thereSolution));
+
+    case thereSolution of
+     -1:
+        BolzanoList.Add('RAprox');
+       //Result.result.Add( 'RAprox' );
+     0: begin
+       leastOneSolution:= (leastOneSolution or False);
+       //Result.result.Add( 'No' );
+       //Result.result.Add( 'No bolzano' )
+     end;
+     1: begin
+       leastOneSolution:= (leastOneSolution or True);
+       Result.result.Add( FloatToStr(xa) );
+     end;
+     2: begin
+       leastOneSolution:= (leastOneSolution or True);
+       Result.result.Add( FloatToStr(xb) );
+     end;
+     3:
+       begin
+         leastOneSolution:= (leastOneSolution or True);
+         resultTemp := closed.bisectionMethod(xa,xb,0.01,funExpression).result;
+         resultTemp := open.secante(StrToFloat(resultTemp),funExpression, e ).result;
+
+         Result.result.Add( resultTemp );
+       end;
+    end;
+    xa := xb;
+  end;
+  Result.thereIsResult := leastOneSolution;
+  Result.result := clearPointsOutOfRange(Result.result, xmin, xmax);
+end;
+
+function TFunOperations.clearPointsOutOfRange(XResults:TStringList; xmin, xmax: Double): TStringList;
+var i: Integer;
+begin
+  Result := TStringList.Create;
+  for i:=0 to XResults.Count -1 do begin
+    if ( StrToFloat( XResults[i] ) >= xmin ) and ( StrToFloat( XResults[i] ) <= xmax ) then begin
+      Result.Add( XResults[i]);
+    end;
+  end;
+end;
+
+end.
+
