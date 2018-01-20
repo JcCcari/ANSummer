@@ -36,7 +36,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="8">
+    <Units Count="10">
       <Unit0>
         <Filename Value="Graphics2.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -76,6 +76,15 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="interpolationMethods"/>
       </Unit7>
+      <Unit8>
+        <Filename Value="generalizatednewton.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="generalizatedNewton"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="matrix.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit9>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

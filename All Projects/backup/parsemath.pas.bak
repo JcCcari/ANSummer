@@ -89,7 +89,7 @@ begin
    else
      Result.resFloat := NaN;
 end;
-
+{
 Procedure ExprNewton( var Result: TFPExpressionResult; Const Args: TExprParameterArray);
 var
   x: Double;
@@ -107,7 +107,7 @@ begin
    TheNewton.Destroy;
 
 end;
-
+}
 Procedure ExprSin( var Result: TFPExpressionResult; Const Args: TExprParameterArray);
 var
   x: Double;
@@ -177,6 +177,29 @@ begin
 
 end;
 
+Procedure ExprSinh( var Result: TFPExpressionResult; Const Args: TExprParameterArray);
+var
+  x: Double;
+begin
+   x := ArgToFloat( Args[ 0 ] );
+   Result.ResFloat:= 0.5*( exp(x)- exp(-x) );
+end;
+
+Procedure ExprCosh( var Result: TFPExpressionResult; Const Args: TExprParameterArray);
+var
+  x: Double;
+begin
+   x := ArgToFloat( Args[ 0 ] );
+   Result.ResFloat:= 0.5*( exp(x)+ exp(-x) );
+end;
+
+Procedure ExprTanh( var Result: TFPExpressionResult; Const Args: TExprParameterArray);
+var
+  x: Double;
+begin
+   x := ArgToFloat( Args[ 0 ] );
+   Result.ResFloat:= sinh(x)/cosh(x);
+end;
 
 Procedure TParseMath.AddFunctions();
 begin
@@ -190,6 +213,8 @@ begin
        AddFunction('sqrt', 'F', 'F', @ExprSQRT);
        AddFunction('floor', 'F', 'F', @ExprFloor );
        AddFunction('power', 'F', 'FF', @ExprPower); //two float arguments 'FF' , returns float
+       //AddFunction('sinh', 'F', 'F', @ExprSinh );
+       //AddFunction('cosh', 'F', 'F', @ExprCosh );
        //AddFunction('Newton', 'F', 'SF', @ExprNewton ); // Una sring argunmen and one float argument, returns float
 
    end

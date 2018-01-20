@@ -7,15 +7,9 @@ interface
 uses
   Classes, SysUtils, FileUtil, TAGraph, Forms, Controls, Graphics, Dialogs,
   TAChartUtils, StdCtrls, LCLType, ExtCtrls, ColorBox, ComCtrls, EditBtn, Grids,
-  TASeries, TAFuncSeries, TARadialSeries, TATools, Types,
-  ParseMath,
-  Result,
-  FunctionOperations,
-  math,
-  resultmethods,
-  ClosedMethods,
-  mOpenMethod,
-  interpolationMethods;
+  Spin, TASeries, TAFuncSeries, TARadialSeries, TATools, Types, ParseMath,
+  Result, FunctionOperations, math, resultmethods, ClosedMethods, mOpenMethod,
+  interpolationMethods, generalizatedNewton;
 
 type
 
@@ -29,10 +23,13 @@ type
     BtnClosedExecute: TButton;
     BtnInterpolationExecute: TButton;
     BtnInterpolationEvaluate: TButton;
+    BtnGenNewtonExecute: TButton;
+    BtnInterpolationClear: TButton;
     Chart1: TChart;
     Chart2: TChart;
     CBoxInterpolationShowPoints: TCheckBox;
     CBoxInterpolationShowValuePoints: TCheckBox;
+    CBoxInterpolationDrawFunc: TCheckBox;
     CheckGroup1: TCheckGroup;
     InterpolationPoints: TLineSeries;
     EdtInterpolationRes: TEdit;
@@ -62,6 +59,9 @@ type
     Label11: TLabel;
     Label12: TLabel;
     Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -74,12 +74,15 @@ type
     Label5: TLabel;
     LblPrecision: TLabel;
     LBoxIntersection: TListBox;
+    MemoGenNewtonRes: TMemo;
     MemoInterpolationRes: TMemo;
     MemoOpenRes: TMemo;
     MemoClosedRes: TMemo;
     PageControl1: TPageControl;
     Panel1: TPanel;
     Panel2: TPanel;
+    Panel3: TPanel;
+    Panel4: TPanel;
     PanelClosedHeader: TPanel;
     PanelClosedHeader1: TPanel;
     RBtnLagrange: TRadioButton;
@@ -91,10 +94,19 @@ type
     RadioGroup1: TRadioGroup;
     RBtnSecant: TRadioButton;
     ScrollBox1: TScrollBox;
+    SpinInterpolationXMin: TSpinEdit;
+    SpinInterpolationXMax: TSpinEdit;
+    SpinGenNewton: TSpinEdit;
     StatusBar1: TStatusBar;
+    StrGridGenNewtonRes: TStringGrid;
+    StrGridGenNewtonVars: TStringGrid;
+    StrGridGenNewtonFuncs: TStringGrid;
+    StrGridGenNewtonXIni: TStringGrid;
+    StsBarXPoint: TStatusBar;
     StrGridOpen: TStringGrid;
     StrGridResIntersection: TStringGrid;
     StrGridClosed: TStringGrid;
+    TabSheetGeneralizatedNewton: TTabSheet;
     TabSheetIntrapolation: TTabSheet;
     TabSheetOpenMethods: TTabSheet;
     TabSheetIntersection: TTabSheet;
@@ -105,6 +117,8 @@ type
     procedure BtnClearFunctionsClick(Sender: TObject);
     procedure BtnClearLBoxClick(Sender: TObject);
     procedure BtnClosedExecuteClick(Sender: TObject);
+    procedure BtnGenNewtonExecuteClick(Sender: TObject);
+    procedure BtnInterpolationClearClick(Sender: TObject);
     procedure BtnInterpolationEvaluateClick(Sender: TObject);
     procedure BtnInterpolationExecuteClick(Sender: TObject);
     procedure BtnIntersectionClick(Sender: TObject);
@@ -116,6 +130,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure FunctionsEditKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
+    procedure SpinGenNewtonChange(Sender: TObject);
     procedure trbarVisibleChange(Sender: TObject);
   private
     FunctionList,
@@ -161,6 +176,13 @@ begin
   max:= 5.0;
   Parse:= TParseMath.create();
   Parse.AddVariable('x', min);
+end;
+
+procedure TForm1.SpinGenNewtonChange(Sender: TObject);
+begin
+  StrGridGenNewtonVars.RowCount:= SpinGenNewton.Value ;
+  StrGridGenNewtonFuncs.RowCount:= SpinGenNewton.Value ;
+  StrGridGenNewtonXIni.RowCount:= SpinGenNewton.Value ;
 end;
 
 procedure TForm1.trbarVisibleChange(Sender: TObject);
@@ -240,6 +262,8 @@ var
   ResY : TStringList;
   i: Integer;
 begin
+    StsBarXPoint.Caption:='0.0';
+
     if (LBoxIntersection.Count < 2) then
        Exit;
 
@@ -248,7 +272,7 @@ begin
     function1:= LBoxIntersection.Items[LBoxIntersection.Count-2];
     function2:= LBoxIntersection.Items[LBoxIntersection.Count-1];
 
-    Res := funOp.intersection(function1, function2, StrToFloat( ediMin.Text), StrToFloat( ediMax.Text), StrToFloat(EdtPrecision.Text) );
+    Res := funOp.intersection(function1, function2, StrToFloat( ediMin.Text), StrToFloat( ediMax.Text), StrToFloat(EdtPrecision.Text), StrToFloat(StsBarXPoint.Caption) );
 
     if( Res.thereIsResult = False) then begin
         ShowMessage('No hay Interseccion en el intervalo ['+ediMin.Text + ','+ediMin.Text+']');
@@ -265,7 +289,7 @@ begin
     StrGridResIntersection.Cols[0].Assign(Res.result);
     StrGridResIntersection.Cols[1].Assign(ResY);
 
-    DrawPointList(Res.result, ResY,intersectionPoints);
+    DrawPointList(Res.result, ResY, intersectionPoints);
 end;
 
 procedure TForm1.BtnClosedExecuteClick(Sender: TObject);
@@ -336,11 +360,20 @@ var
   i: Integer;
   polinomy : String;
   interpolation : TInterpolation;
+  xmin,xmax: Integer;
 begin
     XPoints := TStringList.Create;
     YPoints := TStringList.Create;
     XYPoints := TStringList.Create;
     interpolation := TInterpolation.Create;
+
+    xmin := SpinInterpolationXMin.Value;
+    xmax := SpinInterpolationXMax.Value;
+
+    if ( CBoxInterpolationDrawFunc.Checked) then begin
+         DrawLineSerie(InterpolationSerie,EdtInterpolationRes.Text,xmin,xmax);
+         Exit;
+    end;
 
     extractStrings([','],[],PChar(EdtInterpolationXYpoints.text), XYPoints);
 
@@ -360,7 +393,7 @@ begin
 
     MemoInterpolationRes.Lines.Add( polinomy );
     EdtInterpolationRes.Text:= polinomy;
-    DrawLineSerie(InterpolationSerie,polinomy,1,5);
+    DrawLineSerie(InterpolationSerie,polinomy,xmin,xmax);
 
     if (CBoxInterpolationShowValuePoints.Checked) then
       InterpolationPoints.Marks.Style:= smsValue;
@@ -379,12 +412,52 @@ begin
     y := evaluar(x,EdtInterpolationRes.Text);
 
     DrawPoint(x,y,InterpolationPoints);
+    DrawPoint(NaN,NaN,InterpolationPoints);
 
     if (CBoxInterpolationShowValuePoints.Checked) then
       InterpolationPoints.Marks.Style:= smsValue;
     if ( CBoxInterpolationShowPoints.Checked ) then
       InterpolationPoints.ShowPoints:=True;
 
+end;
+
+procedure TForm1.BtnGenNewtonExecuteClick(Sender: TObject);
+var
+  varsMatrix, funcsMatrix: array of string;
+  xIniMatrix: array of Real;
+  i : Integer;
+  newton: TNg;
+  Res:String;
+begin
+  StrGridGenNewtonRes.Clean;
+  newton := TNg.Create;
+  SetLength(varsMatrix,SpinGenNewton.Value);
+  SetLength(funcsMatrix,SpinGenNewton.Value);
+  SetLength(xIniMatrix,SpinGenNewton.Value);
+
+  for i:=0 to SpinGenNewton.Value-1 do begin
+       varsMatrix[i] := StrGridGenNewtonVars.Cells[0,i];
+       funcsMatrix[i] := StrGridGenNewtonFuncs.Cells[0,i];
+       xIniMatrix[i] := StrToFloat(StrGridGenNewtonXIni.Cells[0,i]);
+  end;
+
+  Res:= newton.newton_generalizado(varsMatrix,funcsMatrix,xIniMatrix);
+
+  StrGridGenNewtonRes.Cols[0].Assign( newton.xnList );
+  StrGridGenNewtonRes.Cols[1].Assign( newton.ErrorList );
+
+  StrGridGenNewtonRes.RowCount:= newton.ErrorList.Count;
+  MemoGenNewtonRes.Lines.Add( IntToStr(newton.xnList.Count) );
+  MemoGenNewtonRes.Lines.Add( IntToStr(newton.ErrorList.Count) );
+  MemoGenNewtonRes.Lines.Add( Res );
+
+  newton.Destroy;
+end;
+
+procedure TForm1.BtnInterpolationClearClick(Sender: TObject);
+begin
+  InterpolationSerie.Clear ;
+  InterpolationPoints.Clear;
 end;
 
 procedure TForm1.BtnClearLBoxClick(Sender: TObject);
