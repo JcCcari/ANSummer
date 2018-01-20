@@ -10,7 +10,7 @@ uses
 type
   TFunOperations = class
     const
-     INTERVAL = 0.001;
+     INTERVAL = 0.01;
     public
       AList,
       BList,
@@ -18,7 +18,7 @@ type
       BolzanoResList: TStringList;
       constructor create();
       //function intersection( f1, f2 : String; xmin, xmax, e: Double): TStringList;
-      function intersection( f1, f2 : String; xmin, xmax, e: Double): TResult;
+      function intersection( f1, f2 : String; xmin, xmax, e,xini: Double): TResult;
     private
       open: TOpenMethod;
       closed : TClosedMethods;
@@ -91,7 +91,7 @@ end;
 // use closed method - parameter [ Point - 1 , Point +1]
 // use open method - parameter [Result closed method]
 
-function TFunOperations.intersection( f1, f2 : String; xmin, xmax, e: Double): TResult;
+function TFunOperations.intersection( f1, f2 : String; xmin, xmax, e,xini: Double): TResult;
 var
   funExpression: String;
   xa, xb: Double;
@@ -121,13 +121,16 @@ begin
     BolzanoList.Add( IntToStr(thereSolution));
 
     case thereSolution of
-     -1:
-        BolzanoList.Add('RAprox');
-       //Result.result.Add( 'RAprox' );
      0: begin
-       leastOneSolution:= (leastOneSolution or False);
-       //Result.result.Add( 'No' );
-       //Result.result.Add( 'No bolzano' )
+       //leastOneSolution:= (leastOneSolution or False);
+       try begin
+         resultTemp := open.secante(xini,funExpression, e ).result;
+         leastOneSolution:= (leastOneSolution or True);
+         Result.result.Add( resultTemp );
+       end
+       except
+          leastOneSolution:= (leastOneSolution or False);
+       end;
      end;
      1: begin
        leastOneSolution:= (leastOneSolution or True);

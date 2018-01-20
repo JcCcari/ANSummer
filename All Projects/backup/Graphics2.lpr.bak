@@ -8,7 +8,8 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, main, ParseMath, tachartlazaruspkg, FunctionOperations, Result,
-  mResult, ClosedMethods, mOpenMethod, resultmethods ;
+  mResult, ClosedMethods, mOpenMethod, resultmethods, interpolationMethods,
+  generalizatedNewton, matrix ;
 
 {$R *.res}
 

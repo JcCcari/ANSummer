@@ -1,45 +1,45 @@
 object Form1: TForm1
-  Left = 262
-  Height = 595
-  Top = 34
-  Width = 1052
+  Left = -7
+  Height = 625
+  Top = 71
+  Width = 764
   AlphaBlend = True
   AlphaBlendValue = 250
   Caption = 'Form1'
-  ClientHeight = 595
-  ClientWidth = 1052
+  ClientHeight = 625
+  ClientWidth = 764
   OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '1.6.4.0'
   WindowState = wsMaximized
   object PageControl1: TPageControl
     Left = 0
-    Height = 595
+    Height = 625
     Top = 0
-    Width = 1052
-    ActivePage = TabSheetIntrapolation
+    Width = 764
+    ActivePage = TabSheetIntersection
     Align = alClient
-    TabIndex = 3
+    TabIndex = 0
     TabOrder = 0
     object TabSheetIntersection: TTabSheet
       Caption = 'Interseccion'
-      ClientHeight = 567
-      ClientWidth = 1044
+      ClientHeight = 597
+      ClientWidth = 756
       object ScrollBox1: TScrollBox
         Left = 0
-        Height = 567
+        Height = 597
         Top = 0
         Width = 224
         HorzScrollBar.Page = 108
         VertScrollBar.Page = 25
         Align = alLeft
-        ClientHeight = 563
+        ClientHeight = 593
         ClientWidth = 220
         TabOrder = 0
         object BtnClearFunctions: TButton
           Left = 0
           Height = 25
-          Top = 538
+          Top = 568
           Width = 220
           Align = alBottom
           Caption = 'Clear Functions'
@@ -49,9 +49,9 @@ object Form1: TForm1
       end
       object Chart1: TChart
         Left = 224
-        Height = 567
+        Height = 597
         Top = 0
-        Width = 618
+        Width = 330
         AxisList = <        
           item
             Minors = <>
@@ -82,12 +82,12 @@ object Form1: TForm1
         end
       end
       object Panel1: TPanel
-        Left = 842
-        Height = 567
+        Left = 554
+        Height = 597
         Top = 0
         Width = 202
         Align = alRight
-        ClientHeight = 567
+        ClientHeight = 597
         ClientWidth = 202
         TabOrder = 2
         object ediMin: TEdit
@@ -160,7 +160,7 @@ object Form1: TForm1
         object trbarVisible: TTrackBar
           Left = 1
           Height = 25
-          Top = 518
+          Top = 525
           Width = 200
           Max = 255
           Min = 200
@@ -172,7 +172,7 @@ object Form1: TForm1
         object StatusBar1: TStatusBar
           Left = 1
           Height = 23
-          Top = 543
+          Top = 573
           Width = 200
           Panels = <>
         end
@@ -239,9 +239,8 @@ object Form1: TForm1
         object StrGridResIntersection: TStringGrid
           Left = 1
           Height = 190
-          Top = 328
+          Top = 336
           Width = 200
-          Align = alBottom
           ColCount = 2
           DefaultColWidth = 90
           RowCount = 1
@@ -251,20 +250,27 @@ object Form1: TForm1
             71
           )
         end
+        object StsBarXPoint: TStatusBar
+          Left = 1
+          Height = 23
+          Top = 550
+          Width = 200
+          Panels = <>
+        end
       end
     end
     object TabSheetClosedMethods: TTabSheet
       Caption = 'Metodos Cerrados'
-      ClientHeight = 567
-      ClientWidth = 1044
+      ClientHeight = 597
+      ClientWidth = 1073
       object PanelClosedHeader: TPanel
         Left = 0
         Height = 120
         Top = 0
-        Width = 1044
+        Width = 1073
         Align = alTop
         ClientHeight = 120
-        ClientWidth = 1044
+        ClientWidth = 1073
         TabOrder = 0
         object Label4: TLabel
           Left = 16
@@ -376,8 +382,8 @@ object Form1: TForm1
       object MemoClosedRes: TMemo
         Left = 0
         Height = 66
-        Top = 501
-        Width = 1044
+        Top = 531
+        Width = 1073
         Align = alBottom
         Lines.Strings = (
           'Memo1'
@@ -386,9 +392,9 @@ object Form1: TForm1
       end
       object StrGridClosed: TStringGrid
         Left = 0
-        Height = 381
+        Height = 411
         Top = 120
-        Width = 1044
+        Width = 1073
         Align = alClient
         Columns = <        
           item
@@ -415,16 +421,16 @@ object Form1: TForm1
     end
     object TabSheetOpenMethods: TTabSheet
       Caption = 'Metodos Abiertos'
-      ClientHeight = 567
-      ClientWidth = 1044
+      ClientHeight = 597
+      ClientWidth = 1073
       object PanelClosedHeader1: TPanel
         Left = 0
         Height = 152
         Top = 0
-        Width = 1044
+        Width = 1073
         Align = alTop
         ClientHeight = 152
-        ClientWidth = 1044
+        ClientWidth = 1073
         TabOrder = 0
         object Label9: TLabel
           Left = 16
@@ -528,9 +534,9 @@ object Form1: TForm1
       end
       object StrGridOpen: TStringGrid
         Left = 0
-        Height = 344
+        Height = 374
         Top = 152
-        Width = 1044
+        Width = 1073
         Align = alClient
         Columns = <        
           item
@@ -557,8 +563,8 @@ object Form1: TForm1
       object MemoOpenRes: TMemo
         Left = 0
         Height = 71
-        Top = 496
-        Width = 1044
+        Top = 526
+        Width = 1073
         Align = alBottom
         Lines.Strings = (
           'MemoOpenRes'
@@ -575,35 +581,35 @@ object Form1: TForm1
     end
     object TabSheetIntrapolation: TTabSheet
       Caption = 'Intrapolacion'
-      ClientHeight = 567
-      ClientWidth = 1044
+      ClientHeight = 597
+      ClientWidth = 1063
       object Panel2: TPanel
-        Left = 682
-        Height = 513
+        Left = 701
+        Height = 543
         Top = 0
         Width = 362
         Align = alRight
-        ClientHeight = 513
+        ClientHeight = 543
         ClientWidth = 362
         TabOrder = 0
         object EdtInterpolationXYpoints: TEdit
-          Left = 32
+          Left = 24
           Height = 23
-          Top = 160
-          Width = 273
+          Top = 368
+          Width = 305
           TabOrder = 0
         end
         object BtnInterpolationExecute: TButton
-          Left = 161
-          Height = 48
-          Top = 192
-          Width = 144
+          Left = 192
+          Height = 40
+          Top = 401
+          Width = 136
           Caption = 'Execute'
           OnClick = BtnInterpolationExecuteClick
           TabOrder = 1
         end
         object RadioGroup3: TRadioGroup
-          Left = 32
+          Left = 24
           Height = 65
           Top = 47
           Width = 216
@@ -633,7 +639,7 @@ object Form1: TForm1
         object EdtInterpolationEvaluate: TLabeledEdit
           Left = 40
           Height = 23
-          Top = 456
+          Top = 488
           Width = 104
           EditLabel.AnchorSideLeft.Control = EdtInterpolationEvaluate
           EditLabel.AnchorSideRight.Control = EdtInterpolationEvaluate
@@ -641,7 +647,7 @@ object Form1: TForm1
           EditLabel.AnchorSideBottom.Control = EdtInterpolationEvaluate
           EditLabel.Left = 40
           EditLabel.Height = 15
-          EditLabel.Top = 438
+          EditLabel.Top = 470
           EditLabel.Width = 104
           EditLabel.Caption = 'EdtInterpolationEvaluate'
           EditLabel.ParentColor = False
@@ -650,16 +656,16 @@ object Form1: TForm1
         object BtnInterpolationEvaluate: TButton
           Left = 216
           Height = 25
-          Top = 454
+          Top = 488
           Width = 112
           Caption = 'Evaluar'
           OnClick = BtnInterpolationEvaluateClick
           TabOrder = 4
         end
         object CheckGroup1: TCheckGroup
-          Left = 32
+          Left = 24
           Height = 105
-          Top = 312
+          Top = 144
           Width = 185
           AutoFill = True
           Caption = 'Opciones de Evaluacion'
@@ -676,7 +682,7 @@ object Form1: TForm1
           TabOrder = 5
           object CBoxInterpolationShowPoints: TCheckBox
             Left = 6
-            Height = 37
+            Height = 25
             Top = 6
             Width = 169
             Caption = 'Graficar Puntos'
@@ -686,29 +692,96 @@ object Form1: TForm1
           end
           object CBoxInterpolationShowValuePoints: TCheckBox
             Left = 6
-            Height = 36
-            Top = 43
+            Height = 25
+            Top = 31
             Width = 169
             Caption = 'Mostrar Valor de Puntos'
             Checked = True
             State = cbChecked
             TabOrder = 1
           end
+          object CBoxInterpolationDrawFunc: TCheckBox
+            Left = 6
+            Height = 23
+            Top = 56
+            Width = 169
+            Caption = 'Graficar Funcion'
+            TabOrder = 2
+          end
         end
         object Label11: TLabel
-          Left = 32
+          Left = 24
           Height = 15
-          Top = 136
+          Top = 344
           Width = 40
           Caption = 'Puntos:'
           ParentColor = False
+        end
+        object Panel4: TPanel
+          Left = 232
+          Height = 105
+          Top = 144
+          Width = 112
+          ClientHeight = 105
+          ClientWidth = 112
+          TabOrder = 6
+          object SpinInterpolationXMin: TSpinEdit
+            Left = 48
+            Height = 23
+            Top = 40
+            Width = 50
+            MinValue = -50
+            TabOrder = 0
+            Value = -5
+          end
+          object SpinInterpolationXMax: TSpinEdit
+            Left = 48
+            Height = 23
+            Top = 75
+            Width = 50
+            TabOrder = 1
+            Value = 5
+          end
+          object Label14: TLabel
+            Left = 9
+            Height = 15
+            Top = 13
+            Width = 76
+            Caption = 'DIMENSIONES'
+            ParentColor = False
+          end
+          object Label15: TLabel
+            Left = 6
+            Height = 15
+            Top = 48
+            Width = 42
+            Caption = 'XMin = '
+            ParentColor = False
+          end
+          object Label16: TLabel
+            Left = 6
+            Height = 15
+            Top = 80
+            Width = 43
+            Caption = 'XMax = '
+            ParentColor = False
+          end
+        end
+        object BtnInterpolationClear: TButton
+          Left = 24
+          Height = 33
+          Top = 408
+          Width = 99
+          Caption = 'Clear'
+          OnClick = BtnInterpolationClearClick
+          TabOrder = 7
         end
       end
       object MemoInterpolationRes: TMemo
         Left = 0
         Height = 31
-        Top = 536
-        Width = 1044
+        Top = 566
+        Width = 1063
         Align = alBottom
         Lines.Strings = (
           'MemoInterpolationRes'
@@ -717,9 +790,9 @@ object Form1: TForm1
       end
       object Chart2: TChart
         Left = 0
-        Height = 513
+        Height = 543
         Top = 0
-        Width = 682
+        Width = 701
         AxisList = <        
           item
             Minors = <>
@@ -752,10 +825,130 @@ object Form1: TForm1
       object EdtInterpolationRes: TEdit
         Left = 0
         Height = 23
-        Top = 513
-        Width = 1044
+        Top = 543
+        Width = 1063
         Align = alBottom
         TabOrder = 3
+      end
+    end
+    object TabSheetGeneralizatedNewton: TTabSheet
+      Caption = 'Newton Generalizado'
+      ClientHeight = 597
+      ClientWidth = 1063
+      object Panel3: TPanel
+        Left = 0
+        Height = 152
+        Top = 0
+        Width = 1063
+        Align = alTop
+        ClientHeight = 152
+        ClientWidth = 1063
+        TabOrder = 0
+        object SpinGenNewton: TSpinEdit
+          Left = 40
+          Height = 23
+          Top = 72
+          Width = 75
+          OnChange = SpinGenNewtonChange
+          TabOrder = 0
+          Value = 2
+        end
+        object StrGridGenNewtonVars: TStringGrid
+          Left = 152
+          Height = 100
+          Top = 32
+          Width = 72
+          ColCount = 1
+          DefaultColWidth = 68
+          FixedCols = 0
+          FixedRows = 0
+          Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goSmoothScroll]
+          RowCount = 2
+          TabOrder = 1
+          Cells = (
+            2
+            0
+            0
+            'x'
+            0
+            1
+            'y'
+          )
+        end
+        object BtnGenNewtonExecute: TButton
+          Left = 856
+          Height = 53
+          Top = 56
+          Width = 123
+          Caption = 'Execute'
+          OnClick = BtnGenNewtonExecuteClick
+          TabOrder = 2
+        end
+        object StrGridGenNewtonFuncs: TStringGrid
+          Left = 304
+          Height = 100
+          Top = 32
+          Width = 336
+          ColCount = 1
+          DefaultColWidth = 332
+          FixedCols = 0
+          FixedRows = 0
+          Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goSmoothScroll]
+          RowCount = 2
+          TabOrder = 3
+        end
+        object StrGridGenNewtonXIni: TStringGrid
+          Left = 720
+          Height = 100
+          Top = 32
+          Width = 72
+          ColCount = 1
+          DefaultColWidth = 68
+          FixedCols = 0
+          FixedRows = 0
+          Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goSmoothScroll]
+          RowCount = 2
+          TabOrder = 4
+        end
+      end
+      object StrGridGenNewtonRes: TStringGrid
+        Left = 0
+        Height = 400
+        Top = 152
+        Width = 1063
+        Align = alClient
+        ColCount = 3
+        Columns = <        
+          item
+            Title.Caption = 'Title'
+            Width = 397
+          end        
+          item
+            Title.Caption = 'Title'
+          end        
+          item
+            Title.Caption = 'Title'
+          end>
+        DefaultColWidth = 200
+        DefaultRowHeight = 40
+        FixedCols = 0
+        TabOrder = 1
+        ColWidths = (
+          397
+          200
+          200
+        )
+      end
+      object MemoGenNewtonRes: TMemo
+        Left = 0
+        Height = 45
+        Top = 552
+        Width = 1063
+        Align = alBottom
+        Lines.Strings = (
+          'MemoGenNewtonRes'
+        )
+        TabOrder = 2
       end
     end
   end
