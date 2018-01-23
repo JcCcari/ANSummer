@@ -129,9 +129,13 @@ begin
          Result.result.Add( resultTemp );
        end
        except
+<<<<<<< HEAD
           xa := xb;
           leastOneSolution:= (leastOneSolution or False);
           Continue;
+=======
+          leastOneSolution:= (leastOneSolution or False);
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
        end;
      end;
      1: begin

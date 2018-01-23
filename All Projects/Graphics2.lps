@@ -8,9 +8,15 @@
       <Unit0>
         <Filename Value="Graphics2.lpr"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
+<<<<<<< HEAD
         <CursorPos X="44" Y="16"/>
         <UsageCount Value="117"/>
+=======
+        <CursorPos X="32" Y="15"/>
+        <UsageCount Value="116"/>
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -19,9 +25,15 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+<<<<<<< HEAD
         <TopLine Value="533"/>
         <CursorPos X="57" Y="538"/>
         <UsageCount Value="117"/>
+=======
+        <TopLine Value="259"/>
+        <CursorPos Y="275"/>
+        <UsageCount Value="116"/>
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -29,21 +41,34 @@
         <Filename Value="parsemath.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ParseMath"/>
+<<<<<<< HEAD
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
         <TopLine Value="139"/>
         <CursorPos X="23" Y="215"/>
         <UsageCount Value="117"/>
         <Loaded Value="True"/>
+=======
+        <EditorIndex Value="-1"/>
+        <TopLine Value="112"/>
+        <CursorPos Y="136"/>
+        <UsageCount Value="116"/>
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
       </Unit2>
       <Unit3>
         <Filename Value="functionoperations.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="FunctionOperations"/>
         <EditorIndex Value="1"/>
+<<<<<<< HEAD
         <TopLine Value="115"/>
         <CursorPos X="20" Y="134"/>
         <UsageCount Value="112"/>
+=======
+        <TopLine Value="124"/>
+        <CursorPos X="42" Y="129"/>
+        <UsageCount Value="111"/>
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -52,16 +77,26 @@
         <UnitName Value="Result"/>
         <EditorIndex Value="4"/>
         <CursorPos X="20" Y="11"/>
+<<<<<<< HEAD
         <UsageCount Value="112"/>
+=======
+        <UsageCount Value="111"/>
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="README.txt"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="6"/>
+<<<<<<< HEAD
         <TopLine Value="12"/>
         <CursorPos X="40" Y="23"/>
         <UsageCount Value="77"/>
+=======
+        <TopLine Value="11"/>
+        <CursorPos X="11" Y="42"/>
+        <UsageCount Value="76"/>
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit5>
@@ -70,7 +105,11 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="17"/>
+<<<<<<< HEAD
         <UsageCount Value="52"/>
+=======
+        <UsageCount Value="51"/>
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
       </Unit6>
       <Unit7>
         <Filename Value="interpolationmethods.pas"/>
@@ -78,7 +117,11 @@
         <UnitName Value="interpolationMethods"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="31"/>
+<<<<<<< HEAD
         <UsageCount Value="50"/>
+=======
+        <UsageCount Value="49"/>
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
       </Unit7>
       <Unit8>
         <Filename Value="generalizatednewton.pas"/>
@@ -87,16 +130,25 @@
         <EditorIndex Value="2"/>
         <TopLine Value="144"/>
         <CursorPos Y="112"/>
+<<<<<<< HEAD
         <UsageCount Value="26"/>
+=======
+        <UsageCount Value="25"/>
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
         <Loaded Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="matrix.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
+<<<<<<< HEAD
         <TopLine Value="40"/>
         <CursorPos X="19" Y="12"/>
         <UsageCount Value="26"/>
+=======
+        <CursorPos X="19" Y="12"/>
+        <UsageCount Value="25"/>
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
         <Loaded Value="True"/>
       </Unit9>
       <Unit10>
@@ -201,6 +253,7 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
+<<<<<<< HEAD
         <Filename Value="main.pas"/>
         <Caret Line="252" Column="134" TopLine="246"/>
       </Position1>
@@ -319,6 +372,126 @@
       <Position30>
         <Filename Value="main.pas"/>
         <Caret Line="374" Column="18" TopLine="357"/>
+=======
+        <Filename Value="functionoperations.pas"/>
+        <Caret Line="94" Column="35" TopLine="89"/>
+      </Position1>
+      <Position2>
+        <Filename Value="functionoperations.pas"/>
+        <Caret Line="21" Column="24" TopLine="4"/>
+      </Position2>
+      <Position3>
+        <Filename Value="functionoperations.pas"/>
+        <Caret Line="94" Column="69" TopLine="94"/>
+      </Position3>
+      <Position4>
+        <Filename Value="main.pas"/>
+        <Caret Line="252" Column="134" TopLine="246"/>
+      </Position4>
+      <Position5>
+        <Filename Value="main.pas"/>
+        <Caret Line="263" TopLine="250"/>
+      </Position5>
+      <Position6>
+        <Filename Value="main.pas"/>
+        <Caret Line="264" TopLine="251"/>
+      </Position6>
+      <Position7>
+        <Filename Value="main.pas"/>
+        <Caret Line="265" TopLine="252"/>
+      </Position7>
+      <Position8>
+        <Filename Value="main.pas"/>
+        <Caret Line="260" TopLine="247"/>
+      </Position8>
+      <Position9>
+        <Filename Value="main.pas"/>
+        <Caret Line="261" TopLine="248"/>
+      </Position9>
+      <Position10>
+        <Filename Value="main.pas"/>
+        <Caret Line="262" TopLine="249"/>
+      </Position10>
+      <Position11>
+        <Filename Value="main.pas"/>
+        <Caret Line="263" TopLine="250"/>
+      </Position11>
+      <Position12>
+        <Filename Value="main.pas"/>
+        <Caret Line="262" TopLine="249"/>
+      </Position12>
+      <Position13>
+        <Filename Value="main.pas"/>
+        <Caret Line="261" TopLine="248"/>
+      </Position13>
+      <Position14>
+        <Filename Value="main.pas"/>
+        <Caret Line="262" TopLine="249"/>
+      </Position14>
+      <Position15>
+        <Filename Value="main.pas"/>
+        <Caret Line="263" TopLine="250"/>
+      </Position15>
+      <Position16>
+        <Filename Value="main.pas"/>
+        <Caret Line="265" TopLine="252"/>
+      </Position16>
+      <Position17>
+        <Filename Value="generalizatednewton.pas"/>
+        <Caret Line="111" Column="6" TopLine="12"/>
+      </Position17>
+      <Position18>
+        <Filename Value="generalizatednewton.pas"/>
+        <Caret Line="8" Column="26"/>
+      </Position18>
+      <Position19>
+        <Filename Value="generalizatednewton.pas"/>
+        <Caret Line="33" Column="15"/>
+      </Position19>
+      <Position20>
+        <Filename Value="main.pas"/>
+        <Caret Line="403" Column="5" TopLine="377"/>
+      </Position20>
+      <Position21>
+        <Filename Value="main.pas"/>
+        <Caret Line="173" Column="74" TopLine="165"/>
+      </Position21>
+      <Position22>
+        <Filename Value="main.pas"/>
+        <Caret Line="419" Column="3" TopLine="397"/>
+      </Position22>
+      <Position23>
+        <Filename Value="main.pas"/>
+        <Caret Line="422" Column="71" TopLine="395"/>
+      </Position23>
+      <Position24>
+        <Filename Value="generalizatednewton.pas"/>
+        <Caret Line="131" Column="25" TopLine="119"/>
+      </Position24>
+      <Position25>
+        <Filename Value="main.pas"/>
+        <Caret Line="424" Column="35" TopLine="410"/>
+      </Position25>
+      <Position26>
+        <Filename Value="Graphics2.lpr"/>
+        <Caret Line="14" Column="21"/>
+      </Position26>
+      <Position27>
+        <Filename Value="main.pas"/>
+        <Caret Line="416" Column="21" TopLine="400"/>
+      </Position27>
+      <Position28>
+        <Filename Value="main.pas"/>
+        <Caret Line="261" Column="38" TopLine="254"/>
+      </Position28>
+      <Position29>
+        <Filename Value="main.pas"/>
+        <Caret Line="260" Column="3" TopLine="243"/>
+      </Position29>
+      <Position30>
+        <Filename Value="Graphics2.lpr"/>
+        <Caret Line="12" Column="30"/>
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
       </Position30>
     </JumpHistory>
   </ProjectSession>

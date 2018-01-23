@@ -126,7 +126,10 @@ begin
        try begin
          resultTemp := open.secante(xini,funExpression, e ).result;
          leastOneSolution:= (leastOneSolution or True);
+<<<<<<< HEAD
          Result.result.Add( resultTemp );
+=======
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
        end
        except
           leastOneSolution:= (leastOneSolution or False);

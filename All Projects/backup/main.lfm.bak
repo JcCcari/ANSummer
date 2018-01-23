@@ -1,13 +1,24 @@
 object Form1: TForm1
+<<<<<<< HEAD
   Left = -7
   Height = 625
   Top = 71
   Width = 764
+=======
+  Left = 269
+  Height = 625
+  Top = 68
+  Width = 1071
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
   AlphaBlend = True
   AlphaBlendValue = 250
   Caption = 'Form1'
   ClientHeight = 625
+<<<<<<< HEAD
   ClientWidth = 764
+=======
+  ClientWidth = 1071
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
   OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '1.6.4.0'
@@ -16,7 +27,11 @@ object Form1: TForm1
     Left = 0
     Height = 625
     Top = 0
+<<<<<<< HEAD
     Width = 764
+=======
+    Width = 1071
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
     ActivePage = TabSheetIntersection
     Align = alClient
     TabIndex = 0
@@ -24,7 +39,11 @@ object Form1: TForm1
     object TabSheetIntersection: TTabSheet
       Caption = 'Interseccion'
       ClientHeight = 597
+<<<<<<< HEAD
       ClientWidth = 756
+=======
+      ClientWidth = 1063
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
       object ScrollBox1: TScrollBox
         Left = 0
         Height = 597
@@ -51,7 +70,11 @@ object Form1: TForm1
         Left = 224
         Height = 597
         Top = 0
+<<<<<<< HEAD
         Width = 330
+=======
+        Width = 637
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
         AxisList = <        
           item
             Minors = <>
@@ -82,7 +105,11 @@ object Form1: TForm1
         end
       end
       object Panel1: TPanel
+<<<<<<< HEAD
         Left = 554
+=======
+        Left = 861
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
         Height = 597
         Top = 0
         Width = 202

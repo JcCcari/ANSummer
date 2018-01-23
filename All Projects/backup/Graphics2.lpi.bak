@@ -36,7 +36,11 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
+<<<<<<< HEAD
     <Units Count="10">
+=======
+    <Units Count="9">
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
       <Unit0>
         <Filename Value="Graphics2.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -81,10 +85,13 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="generalizatedNewton"/>
       </Unit8>
+<<<<<<< HEAD
       <Unit9>
         <Filename Value="matrix.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit9>
+=======
+>>>>>>> 42646a99543fae8834900dc332ad5c838e61ccfd
     </Units>
   </ProjectOptions>
   <CompilerOptions>
